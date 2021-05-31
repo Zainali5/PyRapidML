@@ -2,12 +2,12 @@
 # Author: Zain Ali <zainbalouch3@gmail.com>
 # License: MIT
 # Release: PyRapidML
-# Last modified : 30/05/2021
+# Last modified : 31/05/2021
 
 import pandas as pd
 
-version_ = "1.0.0"
-nightly_version_ = "1.0.0"
+version_ = "1.0.1"
+nightly_version_ = "1.0.1"
 
 __version__ = version_
 

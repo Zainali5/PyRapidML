@@ -14,9 +14,9 @@ def extract_data(dataset="index", save_copy=False, profile=False, verbose=True):
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> all_datasets = get_data('index')
-    >>> juice = get_data('juice')
+    >>> from PyRapidML.datasets import get_data
+    >>> all_datasets = extract_data('index')
+    >>> juice = extract_data('juice')
 
         
     dataset: str, default = 'index'
@@ -41,7 +41,7 @@ def extract_data(dataset="index", save_copy=False, profile=False, verbose=True):
 
     Warnings
     --------
-    - Use of ``get_data`` requires internet connection.
+    - Use of ``extract_data`` requires internet connection.
          
     """
 

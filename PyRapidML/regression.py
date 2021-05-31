@@ -2,7 +2,7 @@
 # Author: Zain Ali <zainbalouch3@gmail.com>
 # License: MIT
 # Release: PyRapidML
-# Last modified : 30/06/2021
+# Last modified : 31/05/2021
 
 import pandas as pd
 import numpy as np
@@ -102,10 +102,10 @@ def initializer(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
 
 
     data : pandas.DataFrame
@@ -674,11 +674,11 @@ def comparing_models(
 
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> best_model = compare_models()
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> best_model = comparing_models()
 
 
     include: list of str or scikit-learn compatible object, default = None
@@ -801,11 +801,12 @@ def creating_model(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
+    
     
 
     estimator: str or scikit-learn compatible object
@@ -929,12 +930,12 @@ def tuning_model(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
-    >>> tuned_lr = tune_model(lr) 
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
+    >>> tuned_lr = tuning_model(lr) 
 
 
     estimator: scikit-learn compatible object
@@ -1126,11 +1127,12 @@ def ensemble_model(
 
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> dt = create_model('dt')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
+    >>> tuned_lr = tuning_model(lr) 
     >>> bagged_dt = ensemble_model(dt, method = 'Bagging')
 
 
@@ -1223,11 +1225,11 @@ def blend_models(
     
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> top3 = compare_models(n_select = 3)
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> top3 = comparing_models(n_select = 3)
     >>> blender = blend_models(top3)
 
 
@@ -1320,11 +1322,11 @@ def stack_models(
 
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> top3 = compare_models(n_select = 3)
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> top3 = comparing_models(n_select = 3)
     >>> stacker = stack_models(top3)
 
 
@@ -1416,11 +1418,11 @@ def plot_model(
 
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
     >>> plot_model(lr, plot = 'residual')
 
 
@@ -1519,11 +1521,11 @@ def evaluate_model(
     
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
     >>> evaluate_model(lr)
     
 
@@ -1592,11 +1594,11 @@ def interpret_model(
 
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp = setup(data = boston,  target = 'medv')
-    >>> xgboost = create_model('xgboost')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> xgboost = creating_model('xgboost')
     >>> interpret_model(xgboost)
 
  
@@ -1669,11 +1671,11 @@ def predict_model(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
     >>> pred_holdout = predict_model(lr)
     >>> pred_unseen = predict_model(lr, data = unseen_dataframe)
 
@@ -1734,11 +1736,11 @@ def finalize_model(
     
     Example
     --------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
     >>> final_lr = finalize_model(lr)
 
 
@@ -1786,11 +1788,11 @@ def deploy_model(
     
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> lr = create_model('lr')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> lr = creating_model('lr')
     >>> deploy_model(model = lr, model_name = 'lr-for-deployment', platform = 'aws', authentication = {'bucket' : 'S3-bucket-name'})
         
 
@@ -1980,12 +1982,12 @@ def automl(optimize: str = "R2", use_holdout: bool = False) -> Any:
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
-    >>> top3 = compare_models(n_select = 3)
-    >>> tuned_top3 = [tune_model(i) for i in top3]
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
+    >>> top3 = comparing_models(n_select = 3)
+    >>> tuned_top3 = [tuning_model(i) for i in top3]
     >>> blender = blend_models(tuned_top3)
     >>> stacker = stack_models(tuned_top3)
     >>> best_mae_model = automl(optimize = 'MAE')
@@ -2036,10 +2038,10 @@ def models(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')    
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')    
     >>> all_models = models()
 
 
@@ -2077,10 +2079,10 @@ def get_metrics(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')    
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')    
     >>> all_metrics = get_metrics()
 
 
@@ -2118,10 +2120,10 @@ def add_metric(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv') 
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv') 
     >>> from sklearn.metrics import explained_variance_score
     >>> add_metric('evs', 'EVS', explained_variance_score)
 
@@ -2169,10 +2171,10 @@ def remove_metric(name_or_id: str):
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'mredv') 
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'mredv') 
     >>> remove_metric('MAPE')
 
 
@@ -2196,11 +2198,11 @@ def get_logs(experiment_name: Optional[str] = None, save: bool = False) -> pd.Da
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv', log_experiment = True) 
-    >>> best = compare_models()
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv', log_experiment = True) 
+    >>> best = comparing_models()
     >>> exp_logs = get_logs()
 
 
@@ -2259,10 +2261,10 @@ def get_config(variable: str):
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv') 
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv') 
     >>> X_train = get_config('X_train') 
 
 
@@ -2314,10 +2316,10 @@ def set_config(variable: str, value):
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv') 
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv') 
     >>> set_config('seed', 123) 
 
 
@@ -2338,10 +2340,10 @@ def save_config(file_name: str):
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
-    >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
-    >>> exp_name = setup(data = boston,  target = 'medv')
+    >>> from PyRapidML.datasets import get_data
+    >>> boston = extract_data('boston')
+    >>> from PyRapidML.regression import *
+    >>> exp_name = initializer(data = boston,  target = 'medv')
     >>> save_config('myvars.pkl') 
 
 
@@ -2362,7 +2364,7 @@ def load_config(file_name: str):
 
     Example
     -------
-    >>> from pycaret.regression import load_config
+    >>> from PyRapidML.regression import load_config
     >>> load_config('myvars.pkl') 
 
 
@@ -2372,3 +2374,12 @@ def load_config(file_name: str):
     """
 
     return pycaret.internal.tabular.load_config(file_name=file_name)
+
+def check_na(dataset):
+    # Here we will check the percentage of nan values present in each feature
+    ## 1 -step make the list of features which has missing values
+    features_with_na=[features for features in dataset.columns if dataset[features].isnull().sum()>1]
+    ## 2- step print the feature name and the percentage of missing values
+
+    for feature in features_with_na:
+        print(feature, np.round(dataset[feature].isnull().mean(), 4),  ' % missing values')
