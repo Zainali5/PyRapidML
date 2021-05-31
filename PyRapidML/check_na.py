@@ -14,5 +14,5 @@ def check_na(dataset):
     ## 2- step print the feature name and the percentage of missing values
 
     for feature in features_with_na:
-        print(feature, np.round(dataset[feature].isnull().mean(), 4),  ' % missing values')
+        return print(feature, np.round(dataset[feature].isnull().mean(), 4),  ' % missing values')
     #return pycaret.internal.tabular.check_na(dataset=dataset)
