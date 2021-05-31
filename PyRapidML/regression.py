@@ -2383,3 +2383,4 @@ def check_na(dataset):
 
     for feature in features_with_na:
         print(feature, np.round(dataset[feature].isnull().mean(), 4),  ' % missing values')
+    return pycaret.internal.tabular.save_config(dataset=dataset)
