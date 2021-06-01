@@ -6,8 +6,8 @@
 
 import pandas as pd
 
-version_ = "1.0.6"
-nightly_version_ = "1.0.6"
+version_ = "1.0.7"
+nightly_version_ = "1.0.7"
 
 __version__ = version_
 
