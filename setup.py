@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="PyRapidML", # Replace with your own username
-    version="1.0.7",
+    version="1.0.8",
     author="Zain Ali",
     author_email="zainbalouch3@gmail.com",
     description="An open source and low code machine learning library for quick and robust analysis",
