@@ -8,19 +8,19 @@
 import pandas as pd
 import numpy as np
 
-import PyRapidML.internal.tabular
-from PyRapidML.internal.Display import Display, is_in_colab, enable_colab
+import pycaret.internal.tabular
+from pycaret.internal.Display import Display, is_in_colab, enable_colab
 from typing import List, Tuple, Any, Union, Optional, Dict
 import warnings
 from IPython.utils import io
 import traceback
 
-from PyRapidML.internal.tabular import MLUsecase
+from pycaret.internal.tabular import MLUsecase
 
 warnings.filterwarnings("ignore")
 
 
-def setup(
+def initializer(
     data: pd.DataFrame,
     target: str,
     train_size: float = 0.7,
@@ -106,9 +106,9 @@ def setup(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
 
 
     data: pandas.DataFrame
@@ -490,7 +490,7 @@ def setup(
     custom_pipeline: (str, transformer) or list of (str, transformer), default = None
         When passed, will append the custom transformers in the preprocessing pipeline
         and are applied on each CV fold separately and on the final fit. All the custom
-        transformations are applied after 'train_test_split' and before PyRapidML's internal 
+        transformations are applied after 'train_test_split' and before pycaret's internal 
         transformations. 
 
 
@@ -578,7 +578,7 @@ def setup(
     if log_plots == True:
         log_plots = ["auc", "confusion_matrix", "feature"]
 
-    return PyRapidML.internal.tabular.setup(
+    return pycaret.internal.tabular.setup(
         ml_usecase="classification",
         available_plots=available_plots,
         data=data,
@@ -656,7 +656,7 @@ def setup(
     )
 
 
-def compare_models(
+def comparing_models(
     include: Optional[List[Union[str, Any]]] = None,
     exclude: Optional[List[str]] = None,
     fold: Optional[Union[int, Any]] = None,
@@ -682,10 +682,10 @@ def compare_models(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> best_model = compare_models() 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> best_model = comparing_models() 
 
 
     include: list of str or scikit-learn compatible object, default = None
@@ -769,7 +769,7 @@ def compare_models(
     - No models are logged in ``MLFlow`` when ``cross_validation`` parameter is False.
     """
 
-    return PyRapidML.internal.tabular.compare_models(
+    return pycaret.internal.tabular.compare_models(
         include=include,
         exclude=exclude,
         fold=fold,
@@ -786,7 +786,7 @@ def compare_models(
     )
 
 
-def create_model(
+def creating_model(
     estimator: Union[str, Any],
     fold: Optional[Union[int, Any]] = None,
     round: int = 4,
@@ -808,10 +808,10 @@ def create_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
 
 
     estimator: str or scikit-learn compatible object
@@ -887,7 +887,7 @@ def create_model(
 
     """
 
-    return PyRapidML.internal.tabular.create_model_supervised(
+    return pycaret.internal.tabular.create_model_supervised(
         estimator=estimator,
         fold=fold,
         round=round,
@@ -899,7 +899,7 @@ def create_model(
     )
 
 
-def tune_model(
+def tuning_model(
     estimator,
     fold: Optional[Union[int, Any]] = None,
     round: int = 4,
@@ -930,11 +930,11 @@ def tune_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
-    >>> tuned_lr = tune_model(lr) 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
+    >>> tuned_lr = tuning_model(lr) 
 
 
     estimator: scikit-learn compatible object
@@ -1082,7 +1082,7 @@ def tune_model(
 
     """
 
-    return PyRapidML.internal.tabular.tune_model_supervised(
+    return pycaret.internal.tabular.tune_model_supervised(
         estimator=estimator,
         fold=fold,
         round=round,
@@ -1127,10 +1127,10 @@ def ensemble_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> dt = create_model('dt')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> dt = creating_model('dt')
     >>> bagged_dt = ensemble_model(dt, method = 'Bagging')
     
 
@@ -1193,7 +1193,7 @@ def ensemble_model(
 
     """
 
-    return PyRapidML.internal.tabular.ensemble_model(
+    return pycaret.internal.tabular.ensemble_model(
         estimator=estimator,
         method=method,
         fold=fold,
@@ -1296,7 +1296,7 @@ def blend_models(
 
     """
 
-    return PyRapidML.internal.tabular.blend_models(
+    return pycaret.internal.tabular.blend_models(
         estimator_list=estimator_list,
         fold=fold,
         round=round,
@@ -1336,10 +1336,10 @@ def stack_models(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> top3 = compare_models(n_select = 3)
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> top3 = comparing_models(n_select = 3)
     >>> stacker = stack_models(top3)
 
 
@@ -1409,7 +1409,7 @@ def stack_models(
 
     """
 
-    return PyRapidML.internal.tabular.stack_models(
+    return pycaret.internal.tabular.stack_models(
         estimator_list=estimator_list,
         meta_model=meta_model,
         fold=fold,
@@ -1444,10 +1444,10 @@ def plot_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
     >>> plot_model(lr, plot = 'auc')
 
 
@@ -1536,7 +1536,7 @@ def plot_model(
 
     """
 
-    return PyRapidML.internal.tabular.plot_model(
+    return pycaret.internal.tabular.plot_model(
         estimator=estimator,
         plot=plot,
         scale=scale,
@@ -1567,10 +1567,10 @@ def evaluate_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
     >>> evaluate_model(lr)
     
 
@@ -1611,7 +1611,7 @@ def evaluate_model(
 
     """
 
-    return PyRapidML.internal.tabular.evaluate_model(
+    return pycaret.internal.tabular.evaluate_model(
         estimator=estimator,
         fold=fold,
         fit_kwargs=fit_kwargs,
@@ -1638,11 +1638,11 @@ def interpret_model(
 
     Example
     -------
-    >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
-    >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> xgboost = create_model('xgboost')
+    >>> from pycaret.datasets import get_data
+    >>> juice = extract_data('juice')
+    >>> from pycaret.classification import *
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> xgboost = creating_model('xgboost')
     >>> interpret_model(xgboost)
 
 
@@ -1689,7 +1689,7 @@ def interpret_model(
 
     """
 
-    return PyRapidML.internal.tabular.interpret_model(
+    return pycaret.internal.tabular.interpret_model(
         estimator=estimator,
         plot=plot,
         feature=feature,
@@ -1722,10 +1722,10 @@ def calibrate_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> dt = create_model('dt')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> dt = creating_model('dt')
     >>> calibrated_dt = calibrate_model(dt)
 
 
@@ -1775,7 +1775,7 @@ def calibrate_model(
 
     """
 
-    return PyRapidML.internal.tabular.calibrate_model(
+    return pycaret.internal.tabular.calibrate_model(
         estimator=estimator,
         method=method,
         fold=fold,
@@ -1841,7 +1841,7 @@ def optimize_threshold(
 
     """
 
-    return PyRapidML.internal.tabular.optimize_threshold(
+    return pycaret.internal.tabular.optimize_threshold(
         estimator=estimator,
         true_positive=true_positive,
         true_negative=true_negative,
@@ -1869,10 +1869,10 @@ def predict_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
     >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> lr = creating_model('lr')
     >>> pred_holdout = predict_model(lr)
     >>> pred_unseen = predict_model(lr, data = unseen_dataframe)
         
@@ -1921,7 +1921,7 @@ def predict_model(
 
     """
 
-    return PyRapidML.internal.tabular.predict_model(
+    return pycaret.internal.tabular.predict_model(
         estimator=estimator,
         data=data,
         probability_threshold=probability_threshold,
@@ -1948,10 +1948,10 @@ def finalize_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
     >>> final_lr = finalize_model(lr)
     
 
@@ -1980,7 +1980,7 @@ def finalize_model(
       
     """
 
-    return PyRapidML.internal.tabular.finalize_model(
+    return pycaret.internal.tabular.finalize_model(
         estimator=estimator,
         fit_kwargs=fit_kwargs,
         groups=groups,
@@ -1998,11 +1998,11 @@ def deploy_model(
 
     Example
     -------
-    >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
-    >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> from pycaret.datasets import get_data
+    >>> juice = extract_data('juice')
+    >>> from pycaret.classification import *
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creating_model('lr')
     >>> deploy_model(model = lr, model_name = 'lr-for-deployment', platform = 'aws', authentication = {'bucket' : 'S3-bucket-name'})
         
 
@@ -2066,7 +2066,7 @@ def deploy_model(
 
     """
 
-    return PyRapidML.internal.tabular.deploy_model(
+    return pycaret.internal.tabular.deploy_model(
         model=model,
         model_name=model_name,
         authentication=authentication,
@@ -2085,10 +2085,10 @@ def save_model(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> lr = create_model('lr')
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')
+    >>> lr = creatinng_model('lr')
     >>> save_model(lr, 'saved_lr_model')
     
 
@@ -2118,7 +2118,7 @@ def save_model(
 
     """
 
-    return PyRapidML.internal.tabular.save_model(
+    return pycaret.internal.tabular.save_model(
         model=model,
         model_name=model_name,
         model_only=model_only,
@@ -2175,7 +2175,7 @@ def load_model(
 
     """
 
-    return PyRapidML.internal.tabular.load_model(
+    return pycaret.internal.tabular.load_model(
         model_name=model_name,
         platform=platform,
         authentication=authentication,
@@ -2194,11 +2194,11 @@ def automl(optimize: str = "Accuracy", use_holdout: bool = False) -> Any:
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
     >>> exp_name = setup(data = juice,  target = 'Purchase')
-    >>> top3 = compare_models(n_select = 3)
-    >>> tuned_top3 = [tune_model(i) for i in top3]
+    >>> top3 = comparing_models(n_select = 3)
+    >>> tuned_top3 = [tuning_model(i) for i in top3]
     >>> blender = blend_models(tuned_top3)
     >>> stacker = stack_models(tuned_top3)
     >>> best_auc_model = automl(optimize = 'AUC')
@@ -2217,7 +2217,7 @@ def automl(optimize: str = "Accuracy", use_holdout: bool = False) -> Any:
         Trained Model
 
     """
-    return PyRapidML.internal.tabular.automl(optimize=optimize, use_holdout=use_holdout)
+    return pycaret.internal.tabular.automl(optimize=optimize, use_holdout=use_holdout)
 
 
 def pull(pop: bool = False) -> pd.DataFrame:
@@ -2236,7 +2236,7 @@ def pull(pop: bool = False) -> pd.DataFrame:
         pandas.DataFrame
 
     """
-    return PyRapidML.internal.tabular.pull(pop=pop)
+    return pycaret.internal.tabular.pull(pop=pop)
 
 
 def models(
@@ -2249,9 +2249,9 @@ def models(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')    
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')    
     >>> all_models = models()
 
 
@@ -2274,7 +2274,7 @@ def models(
         pandas.DataFrame
 
     """
-    return PyRapidML.internal.tabular.models(
+    return pycaret.internal.tabular.models(
         type=type, internal=internal, raise_errors=raise_errors
     )
 
@@ -2290,9 +2290,9 @@ def get_metrics(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase')    
+    >>> exp_name = initializer(data = juice,  target = 'Purchase')    
     >>> all_metrics = get_metrics()
 
 
@@ -2315,7 +2315,7 @@ def get_metrics(
 
     """
 
-    return PyRapidML.internal.tabular.get_metrics(
+    return pycaret.internal.tabular.get_metrics(
         reset=reset, include_custom=include_custom, raise_errors=raise_errors,
     )
 
@@ -2337,9 +2337,9 @@ def add_metric(
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase') 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase') 
     >>> from sklearn.metrics import log_loss
     >>> add_metric('logloss', 'Log Loss', log_loss, greater_is_better = False)
 
@@ -2381,7 +2381,7 @@ def add_metric(
 
     """
 
-    return PyRapidML.internal.tabular.add_metric(
+    return pycaret.internal.tabular.add_metric(
         id=id,
         name=name,
         score_func=score_func,
@@ -2401,9 +2401,9 @@ def remove_metric(name_or_id: str):
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase') 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase') 
     >>> remove_metric('MCC')
 
 
@@ -2415,7 +2415,7 @@ def remove_metric(name_or_id: str):
         None
 
     """
-    return PyRapidML.internal.tabular.remove_metric(name_or_id=name_or_id)
+    return pycaret.internal.tabular.remove_metric(name_or_id=name_or_id)
 
 
 def get_logs(experiment_name: Optional[str] = None, save: bool = False) -> pd.DataFrame:
@@ -2428,10 +2428,10 @@ def get_logs(experiment_name: Optional[str] = None, save: bool = False) -> pd.Da
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase', log_experiment = True) 
-    >>> best = compare_models()
+    >>> exp_name = initializer(data = juice,  target = 'Purchase', log_experiment = True) 
+    >>> best = comparing_models()
     >>> exp_logs = get_logs()
 
 
@@ -2448,7 +2448,7 @@ def get_logs(experiment_name: Optional[str] = None, save: bool = False) -> pd.Da
 
     """
 
-    return PyRapidML.internal.tabular.get_logs(experiment_name=experiment_name, save=save)
+    return pycaret.internal.tabular.get_logs(experiment_name=experiment_name, save=save)
 
 
 def get_config(variable: str):
@@ -2489,9 +2489,9 @@ def get_config(variable: str):
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase') 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase') 
     >>> X_train = get_config('X_train') 
 
 
@@ -2500,7 +2500,7 @@ def get_config(variable: str):
 
     """
 
-    return PyRapidML.internal.tabular.get_config(variable=variable)
+    return pycaret.internal.tabular.get_config(variable=variable)
 
 
 def set_config(variable: str, value):
@@ -2540,9 +2540,9 @@ def set_config(variable: str, value):
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase') 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase') 
     >>> set_config('seed', 123) 
 
 
@@ -2551,7 +2551,7 @@ def set_config(variable: str, value):
 
     """
 
-    return PyRapidML.internal.tabular.set_config(variable=variable, value=value)
+    return pycaret.internal.tabular.set_config(variable=variable, value=value)
 
 
 def save_config(file_name: str):
@@ -2564,9 +2564,9 @@ def save_config(file_name: str):
     Example
     -------
     >>> from PyRapidML.datasets import get_data
-    >>> juice = get_data('juice')
+    >>> juice = extract_data('juice')
     >>> from PyRapidML.classification import *
-    >>> exp_name = setup(data = juice,  target = 'Purchase') 
+    >>> exp_name = initializer(data = juice,  target = 'Purchase') 
     >>> save_config('myvars.pkl') 
 
 
@@ -2575,7 +2575,7 @@ def save_config(file_name: str):
 
     """
 
-    return PyRapidML.internal.tabular.save_config(file_name=file_name)
+    return pycaret.internal.tabular.save_config(file_name=file_name)
 
 
 def load_config(file_name: str):
@@ -2596,4 +2596,4 @@ def load_config(file_name: str):
 
     """
 
-    return PyRapidML.internal.tabular.load_config(file_name=file_name)
+    return pycaret.internal.tabular.load_config(file_name=file_name)
