@@ -1874,9 +1874,9 @@ def save_model(
     
     Example
     -------
-    >>> from pycaret.datasets import get_data
+    >>> from PyRapidML.datasets import get_data
     >>> boston = get_data('boston')
-    >>> from pycaret.regression import *
+    >>> from PyRapidML.regression import *
     >>> exp_name = setup(data = boston,  target = 'medv')
     >>> lr = create_model('lr')
     >>> save_model(lr, 'saved_lr_model')
@@ -1929,7 +1929,7 @@ def load_model(
     
     Example
     -------
-    >>> from pycaret.regression import load_model
+    >>> from PyRapidML.regression import load_model
     >>> saved_lr = load_model('saved_lr_model')
     
 

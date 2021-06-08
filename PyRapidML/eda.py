@@ -18,6 +18,21 @@ def check_na(dataset):
         #return pycaret.internal.tabular.check_na(dataset=dataset)
     else:
         print("No Missing Values")
+        
+    """
+    This function checks missing values and gives the % of missing values in each feature
+    
+
+    Example
+    -------
+    >>> from PyRapidML.eda import check_na
+    >>> na_perc = check_na(df)
+    
+    df: dataframe
+
+         
+    """
+
     
 def numerical_features(dataset):
     # list of numerical variables
@@ -35,4 +50,18 @@ def numerical_features(dataset):
     
     continuous_feature=[feature for feature in numerical_features if feature not in discrete_feature]
     print("Continuous feature Count {}".format(len(continuous_feature)))
+    
+    """
+    This function tells total numerical features and further tell how many of them are discrete and continuous
+    
+
+    Example
+    -------
+    >>> from PyRapidML.eda import numerical_features
+    >>> num_fea = numerical_features(df)
+    
+    df: dataframe
+
+         
+    """
     

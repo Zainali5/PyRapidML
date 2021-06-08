@@ -490,7 +490,7 @@ def initializer(
     custom_pipeline: (str, transformer) or list of (str, transformer), default = None
         When passed, will append the custom transformers in the preprocessing pipeline
         and are applied on each CV fold separately and on the final fit. All the custom
-        transformations are applied after 'train_test_split' and before pycaret's internal 
+        transformations are applied after 'train_test_split' and before PyRapidML's internal 
         transformations. 
 
 
@@ -1638,9 +1638,9 @@ def interpret_model(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
+    >>> from PyRapidML.datasets import get_data
     >>> juice = extract_data('juice')
-    >>> from pycaret.classification import *
+    >>> from PyRapidML.classification import *
     >>> exp_name = initializer(data = juice,  target = 'Purchase')
     >>> xgboost = creating_model('xgboost')
     >>> interpret_model(xgboost)
@@ -1998,9 +1998,9 @@ def deploy_model(
 
     Example
     -------
-    >>> from pycaret.datasets import get_data
+    >>> from PyRapidML.datasets import get_data
     >>> juice = extract_data('juice')
-    >>> from pycaret.classification import *
+    >>> from PyRapidML.classification import *
     >>> exp_name = initializer(data = juice,  target = 'Purchase')
     >>> lr = creating_model('lr')
     >>> deploy_model(model = lr, model_name = 'lr-for-deployment', platform = 'aws', authentication = {'bucket' : 'S3-bucket-name'})
