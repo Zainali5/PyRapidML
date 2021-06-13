@@ -20,10 +20,6 @@ Once PyRapidML gives you the best algorithm. You can further tune the model (in 
    :caption: Getting Started
 
    self
-   installation
-   tutorials
-   contribute
-   modules
 
 .. toctree::
    :maxdepth: 2
