@@ -22,7 +22,7 @@ copyright = '2021, Zain Ali'
 author = 'Zain Ali'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.11'
+release = '1.0.12'
 
 
 # -- General configuration ---------------------------------------------------
