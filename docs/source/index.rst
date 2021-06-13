@@ -30,8 +30,8 @@ Once PyRapidML gives you the best algorithm. You can further tune the model (in 
    :hidden:
    :caption: Documentation
 
-   classification
-   regression
-   natural_language_processing
-   datasets
-   eda
+   api/classification
+   api/regression
+   api/natural_language_processing
+   api/datasets
+   api/eda
