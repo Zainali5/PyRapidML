@@ -24,6 +24,11 @@ Once PyRapidML gives you the best algorithm. You can further tune the model (in 
    tutorials
    contribute
    modules
+   classification
+   regression
+   natural_language_processing
+   datasets
+   eda
 
 .. toctree::
    :maxdepth: 2
