@@ -870,7 +870,7 @@ def creating_model(
         Score grid is not printed when verbose is set to False.
 
 
-    **kwargs: 
+    **kwargs**:
         Additional keyword arguments to pass to the estimator.
 
 
@@ -1064,7 +1064,7 @@ def tuning_model(
         print more messages. Ignored when ``verbose`` param is False.
 
 
-    **kwargs: 
+    **kwargs**:
         Additional keyword arguments to pass to the optimizer.
 
 
@@ -1680,7 +1680,7 @@ def interpret_model(
         When set to True, Plot is saved as a 'png' file in current working directory.
 
 
-    **kwargs:
+    **kwargs**:
         Additional keyword arguments to pass to the plot.
 
 
@@ -2109,7 +2109,7 @@ def save_model(
         Success message is not printed when verbose is set to False.
 
 
-    **kwargs: 
+    **kwargs**:
         Additional keyword arguments to pass to joblib.dump().
 
 
@@ -2372,7 +2372,7 @@ def add_metric(
         Whether the metric supports multiclass target.
 
 
-    **kwargs:
+    **kwargs**:
         Arguments to be passed to score function.
 
 
