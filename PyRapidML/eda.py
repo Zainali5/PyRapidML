@@ -20,6 +20,8 @@ def check_na(dataset):
         print("No Missing Values")
         
     """
+
+    This function checks missing values and gives the % of missing values in each feature
     This function checks missing values and gives the % of missing values in each feature
     
 
@@ -52,8 +54,9 @@ def numerical_features(dataset):
     print("Continuous feature Count {}".format(len(continuous_feature)))
     
     """
+ 
     This function tells total numerical features and further tell how many of them are discrete and continuous
-    
+    This function checks missing values and gives the % of missing values in each feature
 
     Example
     -------
