@@ -1,7 +1,7 @@
 # Module: Natural Language Processing
 # Author: Zain Ali <zainbalouch3@gmail.com>
 # License: MIT
-# Release: Zain Ali 1.0.11
+# Release: Zain Ali 1.0.12
 # Last modified : 10/06/2021
 
 
