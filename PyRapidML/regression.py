@@ -490,7 +490,7 @@ def initializer(
     custom_pipeline: (str, transformer) or list of (str, transformer), default = None
         When passed, will append the custom transformers in the preprocessing pipeline
         and are applied on each CV fold separately and on the final fit. All the custom
-        transformations are applied after 'train_test_split' and before pycaret's internal 
+        transformations are applied after 'train_test_split' and before PyRapidML's internal
         transformations. 
 
 
