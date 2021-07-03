@@ -42,6 +42,6 @@ pip install PyRapidML
 # Important Links
 - Docs: https://pyrapidml.readthedocs.io/en/latest/ 
 - Github Link: https://github.com/Zainali5/PyRapidML 
-
+- Pypi link: https://pypi.org/project/PyRapidML/1.0.13/ 
 # Current Release
 PyRapidML 1.0.13 is now available. The easiest way to install PyRapidML is using pip.
