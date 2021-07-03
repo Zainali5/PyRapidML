@@ -23,10 +23,20 @@ Once PyRapidML gives you the best algorithm. You can further tune the model (in 
 
 Initial idea of PyRapidML was inspired by PyCaret library in Python.
 
-# What PyRapidML has to offer currently? What data science problems PyRapidML can cater?
+# What data science problems PyRapidML can cater?
 Regression
 Classification
 Natural Language Processing
+
+# What PyRapidML has to offer currently?
+Data Prep
+Exploratory Data Analysis
+Model Training
+Finding the best ML model
+Hyperparameter tuning
+Model Deployment
+Analysis and Interpretability
+
 
 # Who is this library for?
 This library is for:
